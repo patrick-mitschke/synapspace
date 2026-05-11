@@ -21,7 +21,7 @@ Das Ziel: Ein Lernsystem, das meinen aktuellen Wissensstand kennt, Lücken erken
 
 **Mittelfristig – IHK-Prüfungsvorbereitung:** Effektive, personalisierte Vorbereitung auf die Abschlussprüfung zum Fachinformatiker Systemintegration (Sommer 2027) – durch ein System, das meinen Lernstand kennt, Lücken erkennt und Inhalte gezielt aufbereitet.
 
-**Langfristig – Ein System, das mitwächst:** SynapSpace ist modular erweiterbar und soll weit über die Prüfung hinaus als persönlicher Lernassistent dienen – für jedes Thema, jedes Berufsfeld, jeden Lebensabschnitt. Die Vision: Ein System, das seinen Nutzer über Jahre kennenlernt, mit ihm wächst und zunehmend proaktiv unterstützt.
+**Langfristig – Ein System, das mitwächst:** SynapSpace ist modular erweiterbar und soll weit über die Prüfung hinaus als persönliches Lernsystem dienen – für jedes Thema, jedes Berufsfeld, jeden Lebensabschnitt. Die Vision: Ein System, das seinen Nutzer über Jahre kennenlernt, mit ihm wächst und zunehmend proaktiv unterstützt.
 
 **Als Portfolio:** Dieses Projekt dokumentiert, wo mein Interesse und meine Motivation liegen – an der Schnittstelle von KI, Infrastruktur und autodidaktischem Lernen. Es richtet sich an Betriebe, die in dieser Arbeitsweise und dieser Dokumentation erkennen, was mir wichtig ist – und die jemanden suchen, der mit Eigeninitiative und echtem Interesse an die Sache herangeht.
 
@@ -103,10 +103,10 @@ Das langfristige Ziel ist ein vollständig lokales Ökosystem mit Echtzeitkommun
 |---|---|---|---|
 | **Phase 0** | Hardware-Inventur, RAM-Upgrade, Memtest, ISO-Setup | ✅ Abgeschlossen | ~6h |
 | **Phase 1** | Ubuntu Server, LVM, NVIDIA-Driver, Docker, UFW, SSH | ✅ Abgeschlossen | ~5h |
-| **Phase 2** | Laptop-Wartung, Netzwerk, Backup-Node, NFS, rsync/GVS, WireGuard, etckeeper | ✅ Abgeschlossen | ~13h |
+| **Phase 2** | Laptop-Wartung, Netzwerk, Backup-Node, NFS, rsync/GVS, WireGuard, etckeeper | ✅ Abgeschlossen | ~12h |
 | **Phase 3** | Container-Stack: docker-compose, OpenClaw, n8n-Workflows | ⏳ Ausstehend | ~12–14h |
 | **Phase 4** | LLM-Modelle: Ollama-Pull, Modelfiles, RAG-Pipeline | ⏳ Ausstehend | ~8–10h |
-| **Phase 5** | Hybrid-Integration: Cloud-Workflows, Prompt-Routing | ⏳ Ausstehend | ~2–3h |
+| **Phase 5** | Hybrid-Integration: Cloud-Workflows, Prompt-Routing | ⏳ Ausstehend | ~4–6h |
 
 Detaillierte Logs mit Befehlen, Konfigurationen, Troubleshooting und Lessons Learned: [`docs/`](./docs/)
 
@@ -147,7 +147,7 @@ Alle Entscheidungen: [`docs/PROJEKT_DECISIONS.md`](./docs/PROJEKT_DECISIONS.md)
 - Hybrid-Integration, Prompt-Routing, Cloud-State-Transfer
 
 **Post-MVP:**
-- OpenClaw als proaktiver Lerncoach via Telegram: erreichbar über Mobilfunk, lernt den Nutzer über Zeit kennen, agiert eigenständig im Heartbeat-Rhythmus
+- OpenClaw als proaktiver Lerncoach via Telegram: erreichbar über Mobilfunk, lernt mich über Zeit kennen, agiert eigenständig im Heartbeat-Rhythmus
 - Proaktive Lernempfehlungen, Tool-Anbindung (Kalender, To-do)
 - Hardware-Upgrade: mehr VRAM und RAM für Echtzeitkommunikation mit lokalen Modellen
 
@@ -166,7 +166,7 @@ Ich lerne am besten autodidaktisch: durch reale Projekte, eigenverantwortliches 
 Mein Fokusthema: Generative KI, agentische Systeme und KI-Infrastruktur.
 
 **Portfolio (KI-Kompetenz & Projektdokumentation):** [patrick-mitschke.github.io/ki-portfolio](https://patrick-mitschke.github.io/ki-portfolio)  
-Dort dokumentiere ich, wie ich KI-Tools einsetze – darunter auch den Einsatz von Claude als Technical Lead während der Entwicklung von SynapSpace.
+Dort dokumentiere ich, wie ich KI-Tools einsetze – vor allem während der Entwicklung von SynapSpace. Hier wird kaum was ausgelassen, was mit den großen Cloud-Modellen möglich ist. Tool-Orchestrierung, fortgeschrittenes Prompt-Engineering, Workflows, modellübergreifende Kommunikation zwischen Chats und mit mir als Postbote und andere Techniken und Strategien. Coding-Tools habe ich jedoch bewusst ausgelassen, damit ich bei der Entwicklung auch was lerne.
 
 ---
 
