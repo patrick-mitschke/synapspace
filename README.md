@@ -161,11 +161,11 @@ Alle Entscheidungen: [`docs/PROJEKT_DECISIONS.md`](./docs/PROJEKT_DECISIONS.md)
 
 Ich bin Patrick Mitschke, Umschüler zum Fachinformatiker Systemintegration (Abschluss Sommer 2027). Vor dieser Umschulung habe ich in völlig anderen Bereichen gearbeitet – SynapSpace ist mein erstes eigenes IT-Projekt. Es ist aus dem Antrieb entstanden, Dinge nicht nur zu nutzen, sondern von Grund auf zu verstehen und selbst zu gestalten.
 
-Ich lerne am besten autodidaktisch: durch reale Projekte, eigenverantwortliches Arbeiten und den Freiraum, meinen eigenen Weg zu gehen. SynapSpace ist der Beweis, dass das funktioniert.
+Ich lerne am besten autodidaktisch: durch reale Projekte, eigenverantwortliches Arbeiten und den Freiraum, meinen eigenen Weg zu gehen.
 
 Mein Fokusthema: Generative KI, agentische Systeme und KI-Infrastruktur.
 
-**Portfolio (KI-Kompetenz & Projektdokumentation):** [patrick-mitschke.github.io/ki-portfolio](https://patrick-mitschke.github.io/ki-portfolio)  
+**KI-Kompetenzprofil und -Anwendungsdokumentation:** [patrick-mitschke.github.io/ki-portfolio](https://patrick-mitschke.github.io/ki-portfolio)  
 Dort dokumentiere ich, wie ich KI-Tools einsetze – vor allem während der Entwicklung von SynapSpace. Hier wird kaum was ausgelassen, was mit den großen Cloud-Modellen möglich ist. Tool-Orchestrierung, fortgeschrittenes Prompt-Engineering, Workflows, modellübergreifende Kommunikation zwischen Chats und mit mir als Postbote und andere Techniken und Strategien. Coding-Tools habe ich jedoch bewusst ausgelassen, damit ich bei der Entwicklung auch was lerne.
 
 ---
