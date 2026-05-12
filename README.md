@@ -91,7 +91,7 @@ Das Ziel: Ein Lernsystem, das meinen aktuellen Wissensstand kennt, Lücken erken
                      └──────────────────────────────────┘
 ```
 
-**Hybrid-Ansatz:** Urheberrechtlich geschützte Daten bleiben ausschließlich lokal. Das Cloud-LLM von Mistral, Le Chat, ergänzt das System für Aufgaben, die lokal aktuell noch nicht in Echtzeit wirtschaftlich sinnvoll lösbar sind. Prompts werden lokal via n8n generiert und manuell übergeben. Kein API-Schlüssel, kein Cloud-Transfer geschützter Inhalte.
+**Hybrid-Ansatz:** Urheberrechtlich geschützte Daten bleiben ausschließlich lokal. Das Cloud-LLM von Mistral, Le Chat, ergänzt das System für Aufgaben, die lokal und in Echtzeit wirtschaftlich nicht sinnvoll lösbar sind. Prompts werden lokal via n8n generiert und manuell übergeben. Kein API-Schlüssel, kein Cloud-Transfer geschützter Inhalte.
 
 ---
 
@@ -120,7 +120,7 @@ Jede Entscheidung ist bewusst getroffen und begründet dokumentiert. Drei Beispi
 
 **Keine LUKS-Festplattenverschlüsselung:** LUKS verschlüsselt die gesamte Festplatte und verlangt beim Booten eine Passphrase zum Entsperren. Auf einem Headless-Server, der nachts automatisch startet und unbeaufsichtigt läuft, wäre das ein Single Point of Failure – der Server würde ohne manuelle Eingabe hängen bleiben. Bewusst dagegen entschieden zugunsten stabilem Unattended-Boot.
 
-Alle Entscheidungen: [`docs/PROJEKT_DECISIONS.md`](./docs/PROJEKT_DECISIONS.md)
+Alle Entscheidungen: [`docs/PROJECT_DECISIONS_san.md`](./docs/PROJECT_DECISIONS_san.md)
 
 ---
 
