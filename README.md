@@ -64,24 +64,24 @@ Das Ziel: Ein Lernsystem, das meinen aktuellen Wissensstand kennt, Lücken erken
 ┌──────────────────────────────────────────────────────────┐
 │                   SynapSpace Heimnetz                    │
 │                                                          │
-│  ┌─────────────────┐      ┌────────────────────────┐    │
-│  │  Fujitsu        │      │  Backup-Node           │    │
-│  │  Celsius M740b  │◄────►│  Acer TravelMate 5735  │    │
-│  │  (Hauptserver)  │      │  rsync + NFS           │    │
-│  │                 │      │  500 GB USB-HDD        │    │
-│  │  Docker-Stack:  │      └────────────────────────┘    │
+│  ┌─────────────────┐      ┌────────────────────────┐     │
+│  │  Fujitsu        │      │  Backup-Node           │     │
+│  │  Celsius M740b  │◄────►│  Acer TravelMate 5735  │     │
+│  │  (Hauptserver)  │      │  rsync + NFS           │     │
+│  │                 │      │  500 GB USB-HDD        │     │
+│  │  Docker-Stack:  │      └────────────────────────┘     │
 │  │  n8n            │                                     │
-│  │  OpenClaw       │      ┌────────────────────────┐    │
-│  │  Ollama         │◄────►│  Dev-Node              │    │
-│  │  Qdrant         │      │  Acer TravelMate P216  │    │
-│  │  Open WebUI     │      │  SSH/SFTP, Git, Claude │    │
-│  │  Portainer      │      └────────────────────────┘    │
+│  │  OpenClaw       │      ┌────────────────────────┐     │
+│  │  Ollama         │◄────►│  Dev-Node              │     │
+│  │  Qdrant         │      │  Acer TravelMate P216  │     │
+│  │  Open WebUI     │      │  SSH/SFTP, Git, Claude │     │
+│  │  Portainer      │      └────────────────────────┘     │
 │  └─────────────────┘                                     │
 │           │                                              │
-│           │         ┌────────────────────────┐          │
-│           └────────►│  FritzBox 7530         │          │
-│                     │  WireGuard VPN Gateway │          │
-│                     └───────────┬────────────┘          │
+│           │         ┌────────────────────────┐           │
+│           └────────►│  FritzBox 7530         │           │
+│                     │  WireGuard VPN Gateway │           │
+│                     └───────────┬────────────┘           │
 └─────────────────────────────────┼────────────────────────┘
                                   │ VPN-Tunnel
                      ┌────────────▼─────────────────────┐
@@ -91,9 +91,7 @@ Das Ziel: Ein Lernsystem, das meinen aktuellen Wissensstand kennt, Lücken erken
                      └──────────────────────────────────┘
 ```
 
-**Hybrid-Ansatz:** Urheberrechtlich geschützte Daten bleiben ausschließlich lokal. Cloud-LLMs (Claude, Gemini, NotebookLM, Perplexity) ergänzen das System für Aufgaben, die lokal aktuell noch nicht in Echtzeit wirtschaftlich sinnvoll lösbar sind. Prompts werden lokal via n8n generiert und manuell übergeben. Kein API-Schlüssel, kein Cloud-Transfer geschützter Inhalte.
-
-Das langfristige Ziel ist ein vollständig lokales Ökosystem mit Echtzeitkommunikation – sobald ein Hardware-Upgrade dies ermöglicht.
+**Hybrid-Ansatz:** Urheberrechtlich geschützte Daten bleiben ausschließlich lokal. Das Cloud-LLM von Mistral, Le Chat, ergänzt das System für Aufgaben, die lokal aktuell noch nicht in Echtzeit wirtschaftlich sinnvoll lösbar sind. Prompts werden lokal via n8n generiert und manuell übergeben. Kein API-Schlüssel, kein Cloud-Transfer geschützter Inhalte.
 
 ---
 
