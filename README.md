@@ -83,24 +83,24 @@ Was DEX kann, was andere Komponenten nicht können: **proaktiv agieren**. n8n f�
 ┌──────────────────────────────────────────────────────────┐
 │                   SynapSpace Heimnetz                    │
 │                                                          │
-│  ┌─────────────────┐      ┌────────────────────────┐    │
-│  │  Fujitsu        │      │  Backup-Node           │    │
-│  │  Celsius M740b  │◄────►│  Acer TravelMate 5735  │    │
-│  │  (Hauptserver)  │      │  rsync + NFS           │    │
-│  │                 │      │  500 GB USB-HDD        │    │
-│  │  Docker-Stack:  │      └────────────────────────┘    │
+│  ┌─────────────────┐      ┌────────────────────────┐     │
+│  │  Fujitsu        │      │  Backup-Node           │     │
+│  │  Celsius M740b  │◄────►│  Acer TravelMate 5735  │     │
+│  │  (Hauptserver)  │      │  rsync + NFS           │     │
+│  │                 │      │  500 GB USB-HDD        │     │
+│  │  Docker-Stack:  │      └────────────────────────┘     │
 │  │  n8n            │                                     │
-│  │  OpenClaw/DEX   │      ┌────────────────────────┐    │
-│  │  Ollama         │◄────►│  Dev-Node              │    │
-│  │  Qdrant         │      │  Acer TravelMate P216  │    │
-│  │  Open WebUI     │      │  SSH/SFTP, Git, Claude │    │
-│  │  Portainer      │      └────────────────────────┘    │
+│  │  OpenClaw/DEX   │      ┌────────────────────────┐     │
+│  │  Ollama         │◄────►│  Dev-Node              │     │
+│  │  Qdrant         │      │  Acer TravelMate P216  │     │
+│  │  Open WebUI     │      │  SSH/SFTP, Git, Claude │     │
+│  │  Portainer      │      └────────────────────────┘     │
 │  └─────────────────┘                                     │
 │           │                                              │
-│           │         ┌────────────────────────┐          │
-│           └────────►│  FritzBox 7530         │          │
-│                     │  WireGuard VPN Gateway │          │
-│                     └───────────┬────────────┘          │
+│           │         ┌────────────────────────┐           │
+│           └────────►│  FritzBox 7530         │           │
+│                     │  WireGuard VPN Gateway │           │
+│                     └───────────┬────────────┘           │
 └─────────────────────────────────┼────────────────────────┘
                                   │ VPN-Tunnel
                      ┌────────────▼─────────────────────┐
