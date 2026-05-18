@@ -124,7 +124,7 @@
 - ⚠️ „Create bond" nur bei mehreren NICs – bei Einzelkarte immer abbrechen
 - ⚠️ Ubuntu 24.04: SSH trotz Installer-Auswahl nicht automatisch aktiv → `sudo systemctl enable ssh --now`
 - ⚠️ LUKS auf Headless-Servern vermeiden – Passphrase bei Reboot nicht möglich
-- ℹ️ Predictable Network Naming: enp0s25 = Ethernet, PCI-Bus 0, Slot 25
+- ℹ️ Predictable Network Naming: enp0s25 = Ethernet, PCI-Bus x, Slot x
 - ℹ️ EFI-Partition im Subiquity Custom Layout: Disk → „Use as Boot Device" → ESP automatisch korrekt (fat32)
 - ℹ️ vfat nicht im Format-Dropdown wählbar – wird automatisch gesetzt bei Mount /boot/efi
 - ℹ️ Installer-Update überspringen („Continue without updating") – kein MVP-Mehrwert
