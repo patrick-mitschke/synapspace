@@ -123,7 +123,7 @@ Der Setup-Wizard wurde in einer tmux-Session ausgeführt, um SSH-Disconnect-Risi
 
 ![OpenClaw Wizard-Abschluss – Gateway gestartet, Container running](../assets/phase-3/phase3b_openclaw-wizard.png)
 
-![DEX antwortet in Telegram auf die erste Frage](../assets/phase-3/phase3b_dex-erster-chat.png)
+![DEX antwortet in Telegram auf die erste Frage](../assets/phase-3/phase3b_dex-erster-chat.jpg)
 
 ---
 
