@@ -148,36 +148,34 @@
 **Status: ✅ COMPLETE**
 
 ### Backup-Scope
-
+ 
 | Client | Protokoll | Zielverzeichnis |
 |--------|-----------|-----------------|
 | Hauptserver (Docker-Volumes) | rsync over SSH | /mnt/backup-hdd/synapspace/ |
-| Linux Mint (Partnerin) | NFS | /mnt/backup-ssd/partner/ |
+| Linux Client (privat) | NFS | /mnt/backup-ssd/linux-client/ |
 | Windows (privat) | SMB (Samba) | /mnt/backup-ssd/privat/ |
-
+ 
 #### Verzeichnisstruktur
 ```
 /mnt/backup-ssd/          # interne SSD ~79GB
-├── partner/              # Linux Mint (NFS)
+├── linux-client/         # Linux Client privat (NFS)
 └── privat/               # Windows private Dateien (Samba)
-
+ 
 /mnt/backup-hdd/          # externe 500GB USB-HDD (ext4)
 ├── synapspace/           # Docker-Volumes Hauptserver (GVS)
 │   └── sysconfig/        # Wöchentlicher System-State-Export
 └── latest -> ...         # Symlink auf letztes Backup
 ```
-
+ 
 #### NFS-Konfiguration (`/etc/exports`)
-- **Export:** `/mnt/backup-ssd/partner <HOME_SUBNET>(rw,sync,no_subtree_check)`
+- **Export:** `/mnt/backup-ssd/linux-client <HOME_SUBNET>(rw,sync,no_subtree_check)`
 - **Berechtigungen:** `nobody:nogroup`, `chmod 777` (temporär)
 - **Dienst:** `nfs-kernel-server`
-
 #### Samba-Konfiguration (`/etc/samba/smb.conf`)
 - **Share:** `[privat]` → `/mnt/backup-ssd/privat/`
 - **User:** `backupuser` (kein Home `-M`, kein Shell-Zugang `-s /usr/sbin/nologin`)
 - **Berechtigungen:** `chmod 700`, Besitzer `backupuser:backupuser`
 - **Zugriffsbeschränkung:** `valid users = backupuser`, `hosts allow = <HOME_SUBNET> 127.0.0.1`
-
 ### Lessons Learned
 - ⚠️ Samba versehentlich auf Hauptserver installiert → `apt remove --purge samba` (Minimalprinzip)
 - ⚠️ Immer Hostname prüfen bevor Pakete installiert werden
