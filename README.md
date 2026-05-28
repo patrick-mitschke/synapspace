@@ -1,7 +1,7 @@
 # SynapSpace – Lokales KI-Lernökosystem
 
-> **Dieses Repository befindet sich im aktiven Aufbau.**  
-> Phasen 0–3 sind abgeschlossen und vollständig dokumentiert. Phasen 4–6 folgen in den nächsten Wochen. Die README gibt zunächst den vollständigen Überblick – detaillierte Logs, Konfigurationen und Entscheidungsdokumentation werden schrittweise in separaten Dateien unter `docs/` ausgelagert.
+> **Dieses Repository befindet sich im aktiven Aufbau.**
+> Phasen 0–4 sind abgeschlossen und vollständig dokumentiert. Phasen 5–6 folgen in den nächsten Wochen. Die README gibt zunächst den vollständigen Überblick – detaillierte Logs, Konfigurationen und Entscheidungsdokumentation werden schrittweise in separaten Dateien unter `docs/` ausgelagert.
 
 ---
 
@@ -29,34 +29,34 @@ Das Ziel: Ein Lernsystem, das meinen aktuellen Wissensstand kennt, Lücken erken
 
 ## Tech-Stack (MVP)
 
-| Komponente | Technologie | Rolle |
-|---|---|---|
-| **Server** | Fujitsu Celsius M740b, Xeon E5-2620 v4, 64 GB ECC RAM | Zentrale Inferenz- & Orchestrierungseinheit |
-| **GPU** | MSI Aero GTX 1070 8GB OC *(gekauft, Einbau ausstehend)* | GPU-Inferenz, Layer-Splitting |
-| **OS** | Ubuntu Server 24.04 LTS (Bare-Metal) | Stabil, NVIDIA-kompatibel, 5 Jahre LTS |
-| **Storage** | LVM (40 GB root / 404 GB Docker) | Flexible Größenanpassung, Snapshot-fähig |
-| **Container** | Docker + Docker Compose | Single-Node-Orchestrierung |
-| **Inferenz** | Ollama (GGUF, quantisiert) | Lokale LLMs – aktuell CPU-only, GPU nach Einbau |
-| **Vektordatenbank** | Qdrant | RAG für urheberrechtlich geschützte Medien |
-| **Agentik** | OpenClaw / DEX | Proaktiver Bildungscoach, Heartbeat-Workflows, Telegram |
-| **Automatisierung** | n8n | Deterministisches Routing, ETL, Monitoring |
-| **UI** | Open WebUI | Voice-Check-ins via Whisper |
-| **Monitoring** | Netdata *(Phase 4, ausstehend)* | Echtzeit-Dashboard: CPU, RAM, Disk, GPU, Docker |
-| **Backup** | rsync + GVS-Strategie (Großvater-Vater-Sohn) | Automatisiert, kalenderunabhängig |
-| **VPN** | WireGuard via FritzBox 7530 | Sicherer Remote-Zugriff |
-| **Firewall** | UFW | Whitelisting auf Subnetz-Ebene |
+| Komponente          | Technologie                                             | Rolle                                                   |
+| ------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| **Server**          | Fujitsu Celsius M740b, Xeon E5-2620 v4, 64 GB ECC RAM   | Zentrale Inferenz- & Orchestrierungseinheit             |
+| **GPU**             | MSI Aero GTX 1070 8GB OC *(eingebaut, verifiziert)*     | GPU-Inferenz, Layer-Splitting                           |
+| **OS**              | Ubuntu Server 24.04 LTS (Bare-Metal)                    | Stabil, NVIDIA-kompatibel, 5 Jahre LTS                  |
+| **Storage**         | LVM (40 GB root / 404 GB Docker)                        | Flexible Größenanpassung, Snapshot-fähig                |
+| **Container**       | Docker + Docker Compose                                 | Single-Node-Orchestrierung                              |
+| **Inferenz**        | Ollama (GGUF, quantisiert)                              | Lokale LLMs – GPU-beschleunigt, automatisches Layer-Splitting |
+| **Vektordatenbank** | Qdrant                                                  | RAG für urheberrechtlich geschützte Medien              |
+| **Agentik**         | OpenClaw / DEX                                          | Proaktiver Bildungscoach, Heartbeat-Workflows, Telegram |
+| **Automatisierung** | n8n                                                     | Deterministisches Routing, ETL, Monitoring              |
+| **UI**              | Open WebUI                                              | Voice-Check-ins via Whisper                             |
+| **Monitoring**      | Netdata                                                 | Echtzeit-Dashboard: CPU, RAM, Disk, GPU, Docker         |
+| **Backup**          | rsync + GVS-Strategie (Großvater-Vater-Sohn)            | Automatisiert, kalenderunabhängig                       |
+| **VPN**             | WireGuard via FritzBox 7530                             | Sicherer Remote-Zugriff                                 |
+| **Firewall**        | UFW                                                     | Whitelisting auf Subnetz-Ebene                          |
 
 **LLM-Portfolio (lokal, ~97.5 GB):**
 
-| Modell | Größe | Rolle |
-|---|---|---|
-| Llama-3.2-3B | 2.0 GB | Triage & Routing (DEX) |
-| Hermes-3-Llama-3.1-8B | 4.7 GB | Tool-Calling (OpenClaw-Motor) |
-| Qwen2.5-7B-Instruct | 4.7 GB | IT-Skripting, Linux-Administration |
-| Mistral-Nemo-12B | 7.1 GB | Vorfilterung, 128k Kontext |
-| Command-R (35B) | 18 GB | RAG-Spezialist, präzise Zitierung |
-| Qwen2.5-32B-Instruct | 19 GB | Komplexe Logik, Mathematik |
-| Llama-3.1-70B | 42 GB | Qualitätskontrolle (Senior-Endabnahme) |
+| Modell                | Größe  | Rolle                                  |
+| --------------------- | ------ | -------------------------------------- |
+| Llama-3.2-3B          | 2.0 GB | Triage & Routing (DEX)                 |
+| Hermes-3-Llama-3.1-8B | 4.7 GB | Tool-Calling (OpenClaw-Motor)          |
+| Qwen2.5-7B-Instruct   | 4.7 GB | IT-Skripting, Linux-Administration     |
+| Mistral-Nemo-12B      | 7.1 GB | Vorfilterung, 128k Kontext             |
+| Command-R (35B)       | 18 GB  | RAG-Spezialist, präzise Zitierung      |
+| Qwen2.5-32B-Instruct  | 19 GB  | Komplexe Logik, Mathematik             |
+| Llama-3.1-70B         | 42 GB  | Qualitätskontrolle (Senior-Endabnahme) |
 
 ---
 
@@ -67,6 +67,7 @@ DEX ist der agentische Kern von SynapSpace – powered by OpenClaw, verbunden vi
 Was DEX kann, was andere Komponenten nicht können: **proaktiv agieren**. n8n führt Workflows aus wenn sie getriggert werden. Open WebUI wartet auf Eingabe. DEX hingegen kann eigenständig im Hintergrund arbeiten, Kontext aufbauen und von sich aus handeln – z.B. Lernstand überprüfen, Erinnerungen schicken oder Troubleshooting-Aufgaben in einer isolierten Sandbox erstellen.
 
 **Aktuelle Einsatzszenarien:**
+
 - Passiver Bildungs- und Karrierecoach via Telegram (MVP aktiv)
 - Praxis-Trainer: erstellt eigenständig Troubleshooting-Aufgaben in isolierter Sandbox
 - Didaktische Brücke: transformiert Alltagssituationen in IT-Projektideen
@@ -116,17 +117,17 @@ Was DEX kann, was andere Komponenten nicht können: **proaktiv agieren**. n8n f�
 
 ## Projektphasen
 
-| Phase | Inhalt | Status | Aufwand |
-|---|---|---|---|
-| **Phase 0** | Hardware-Inventur, RAM-Upgrade, Memtest, ISO-Setup | ✅ Abgeschlossen | ~6h |
-| **Phase 1** | Ubuntu Server, LVM, NVIDIA-Driver, Docker, UFW, SSH | ✅ Abgeschlossen | ~5h |
-| **Phase 2** | Laptop-Wartung, Netzwerk, Backup-Node, NFS, rsync/GVS, WireGuard, etckeeper | ✅ Abgeschlossen | ~12h |
-| **Phase 3** | Container-Stack, LLM-Modelle, DEX/OpenClaw | ✅ Abgeschlossen | ~6h |
-| **Phase 4** | GPU-Integration, Netdata Monitoring, Modelfiles | 🔄 In Arbeit | ~8–10h |
-| **Phase 5** | RAG & n8n Workflows | ⏳ Ausstehend | ~8–10h |
-| **Phase 6** | Hybrid-Integration Cloud | ⏳ Ausstehend | ~2–3h |
+| Phase       | Inhalt                                                                      | Status          | Aufwand |
+| ----------- | --------------------------------------------------------------------------- | --------------- | ------- |
+| **Phase 0** | Hardware-Inventur, RAM-Upgrade, Memtest, ISO-Setup                          | ✅ Abgeschlossen | ~6h     |
+| **Phase 1** | Ubuntu Server, LVM, NVIDIA-Driver, Docker, UFW, SSH                         | ✅ Abgeschlossen | ~5h     |
+| **Phase 2** | Laptop-Wartung, Netzwerk, Backup-Node, NFS, rsync/GVS, WireGuard, etckeeper | ✅ Abgeschlossen | ~12h    |
+| **Phase 3** | Container-Stack, LLM-Modelle, DEX/OpenClaw                                  | ✅ Abgeschlossen | ~6h     |
+| **Phase 4** | GPU-Integration, Netdata Monitoring, Modelfiles                             | ✅ Abgeschlossen | ~10h    |
+| **Phase 5** | RAG & n8n Workflows                                                         | ⏳ Ausstehend    | ~8–10h  |
+| **Phase 6** | Hybrid-Integration Cloud                                                    | ⏳ Ausstehend    | ~2–3h   |
 
-Detaillierte Logs mit Befehlen, Konfigurationen, Troubleshooting und Lessons Learned: [`docs/`](./docs/)
+Detaillierte Logs mit Befehlen, Konfigurationen, Troubleshooting und Lessons Learned: [`docs/`](https://github.com/patrick-mitschke/synapspace/blob/main/docs)
 
 ---
 
@@ -140,7 +141,7 @@ Jede Entscheidung ist bewusst getroffen und begründet dokumentiert. Drei Beispi
 
 **Keine LUKS-Festplattenverschlüsselung:** LUKS verschlüsselt die gesamte Festplatte und verlangt beim Booten eine Passphrase zum Entsperren. Auf einem Headless-Server, der nachts automatisch startet und unbeaufsichtigt läuft, wäre das ein Single Point of Failure – der Server würde ohne manuelle Eingabe hängen bleiben. Bewusst dagegen entschieden zugunsten stabilem Unattended-Boot.
 
-Alle Entscheidungen: [`docs/PROJECT_DECISIONS_san.md`](./docs/PROJECT_DECISIONS_san.md)
+Alle Entscheidungen: [`docs/PROJECT_DECISIONS_san.md`](https://github.com/patrick-mitschke/synapspace/blob/main/docs/PROJECT_DECISIONS_san.md)
 
 ---
 
@@ -159,23 +160,22 @@ Alle Entscheidungen: [`docs/PROJECT_DECISIONS_san.md`](./docs/PROJECT_DECISIONS_
 
 ## Was kommt als nächstes
 
-**Phase 4 – GPU-Integration (in Arbeit):**
-- GTX 1070 8GB OC einbauen, Layer-Splitting verifizieren
-- Netdata Echtzeit-Monitoring einrichten
-- Modelfiles konfigurieren (Temperatur, System-Prompts, Kontextlänge)
-
 **Phase 5 – RAG & Workflows:**
+
 - n8n RAG-Workflows: Fachliteratur → Qdrant indexieren
 - Anki-Export-Automatisierung, LVM-Monitoring-Alarm
 
 **Phase 6 – Hybrid-Integration:**
+
 - Cloud-Workflows einrichten, Prompt-Routing, State-Transfer
 
 **Post-MVP:**
+
 - DEX Heartbeat aktivieren: proaktive Lernbegleitung via Telegram
 - Hardware-Upgrade: mehr VRAM und RAM für Echtzeitkommunikation
 
 **Längerfristige Vision:**
+
 - Physisches Companion-Device (Raspberry Pi + Kamera + Mikrofon + Lautsprecher): verbunden mit dem lokalen System, gibt Bewegungserinnerungen, erkennt ergonomische Probleme
 - Smart-Glasses-Integration: Der Agent sieht live, woran gearbeitet wird – vollständig lokal
 
@@ -189,7 +189,7 @@ Ich lerne am besten autodidaktisch: durch reale Projekte, eigenverantwortliches 
 
 Mein Fokusthema: Generative KI, agentische Systeme und KI-Infrastruktur.
 
-**KI-Kompetenzprofil und -Anwendungsdokumentation:** [patrick-mitschke.github.io/ki-portfolio](https://patrick-mitschke.github.io/ki-portfolio)  
+**KI-Kompetenzprofil und -Anwendungsdokumentation:** [patrick-mitschke.github.io/ki-portfolio](https://patrick-mitschke.github.io/ki-portfolio)
 Dort dokumentiere ich, wie ich KI-Tools einsetze – vor allem während der Entwicklung von SynapSpace. Hier wird kaum was ausgelassen, was mit den großen Cloud-Modellen möglich ist. Tool-Orchestrierung, fortgeschrittenes Prompt-Engineering, Workflows, modellübergreifende Kommunikation zwischen Chats und mit mir als Postbote und andere Techniken und Strategien. Coding-Tools habe ich jedoch bewusst ausgelassen, damit ich bei der Entwicklung auch was lerne.
 
 ---
