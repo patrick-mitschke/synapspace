@@ -32,6 +32,10 @@ So sieht die eingebaute Karte im Server aus:
 
 ![GTX 1070 im Celsius M740b verbaut](../assets/phase-4/phase4_gpu-eingebaut.jpg)
 
+Nach dem Einbau habe ich zuerst geprüft, ob das System die Karte sauber erkennt. `nvidia-smi` zeigt die GTX 1070 im Idle-Zustand – Treiber geladen, keine laufenden Prozesse:
+
+![nvidia-smi: GTX 1070 erkannt, Idle-Zustand, keine laufenden Prozesse](../assets/phase-4/phase4_nvidia-smi-server.png)
+
 **Stresstest im eingebauten Zustand:** Mit `gpu-burn` in einem CUDA-Docker-Container habe ich die Karte unter Last verifiziert.
 
 ![gpu-burn Stresstest: 0 Fehler, 74°C Peak, ~5060 Gflop/s](../assets/phase-4/phase4_gpuburn_stresstest.png)
