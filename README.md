@@ -168,7 +168,7 @@ Alle Entscheidungen: [`docs/PROJECT_DECISIONS_san.md`](https://github.com/patric
 - PostgreSQL ohne Host-Port – nur containerintern erreichbar
 - Secrets in `.env`-Dateien (chmod 600), getrennt vom versionierten Code; nie ins öffentliche Repo
 - Urheberrechtlich geschützte Daten: strikt lokal in Qdrant, kein Cloud-Transfer
-- Alle in die Cloud gehenden Privatdaten via Cryptomator verschlüsselt (verschlüsselt at rest)
+- Alle ins Cloud-Backup gehenden Privatdaten via Cryptomator verschlüsselt (verschlüsselt at rest)
 - CVE-gepatchte OpenClaw-Version (2026.5.12), eingeschränkter Tool-Korridor, Telegram-Allowlist
 
 ---
