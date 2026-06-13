@@ -8,7 +8,7 @@ Jede Phasen-Datei dokumentiert:
 - Troubleshooting und Lösungswege
 - Lessons Learned
 
-Sensible Infrastruktur-Details (IP-Adressen, Subnetze) sind in allen Dateien durch Platzhalter ersetzt (`<SERVER_IP>`, `<BACKUP_IP>`, `<HOME_SUBNET>` etc.).
+Sensible Details (IP-Adressen, Subnetze, Benutzernamen, VPN-Endpunkte) sind in allen Dateien durch Platzhalter ersetzt (`<SERVER_IP>`, `<BACKUP_IP>`, `<HOME_SUBNET>`, `<USER>`, `<WIREGUARD_ENDPOINT>` etc.).
 
 ---
 
@@ -21,8 +21,9 @@ Sensible Infrastruktur-Details (IP-Adressen, Subnetze) sind in allen Dateien dur
 | [PHASE_2_san.md](./PHASE_2_san.md) | Laptop-Wartung, Netzwerk, Backup-Node, NFS, rsync/GVS, WireGuard, etckeeper | ✅ Abgeschlossen |
 | [PHASE_3_san.md](./PHASE_3_san.md) | Container-Stack, LLM-Modelle, DEX/OpenClaw | ✅ Abgeschlossen |
 | [PHASE_4_san.md](./PHASE_4_san.md) | GPU-Integration, Netdata Monitoring, Modelfiles | ✅ Abgeschlossen |
-| PHASE_5_san.md | RAG & n8n Workflows | ⏳ Ausstehend |
-| PHASE_6_san.md | Hybrid-Integration Cloud | ⏳ Ausstehend |
+| [PHASE_4_5_san.md](./PHASE_4_5_san.md) | Systemhärtung, Remote-Zugriff (DualStack/WireGuard), Coach-Architektur, Backup-Ausbau | ✅ Abgeschlossen |
+| PHASE_5_san.md | Hybrid-System mit Mistral: Coach „DEX" (Vibe), Lernprofil-DB, n8n als MCP-Server / MCP-Brücke | ⏳ Ausstehend |
+| PHASE_6_san.md | Lokales Wissens-Backend: RAG (Qdrant), Tutoren, Concept Map, Material-/Monitoring-Workflows | ⏳ Ausstehend |
 | [PROJECT_DECISIONS_san.md](./PROJECT_DECISIONS_san.md) | Alle technischen Entscheidungen mit Begründungen | 📋 Laufend |
 
 ---
