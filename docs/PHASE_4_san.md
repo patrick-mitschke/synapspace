@@ -142,6 +142,8 @@ Den `SYSTEM`-Parameter habe ich bewusst **nicht** im Modelfile gesetzt – er ko
 
 ## Schritt 5: OpenClaw/DEX-Feintuning
 
+> ⚠️ **HISTORISCH (Coach-Engine-Umentscheidung, Phase 4.5):** Das hier beschriebene Feintuning betrifft den **lokalen** OpenClaw-DEX (`hermes3:8b-dex`). Seit Phase 4.5 ist der Coach „DEX" = **Mistral Vibe (Cloud)**; das lokale DEX-Modell ist Post-MVP. Der Abschnitt bleibt als Verlaufsdoku erhalten — Details → [PHASE_4_5_san.md](./PHASE_4_5_san.md).
+
 Das Feintuning des Agenten war der aufwändigste Teil dieser Phase. Die zentrale Erkenntnis: Bei einem 8B-Modell ist die **Länge des System-Prompts kritisch**.
 
 **SOUL.md (~750 Zeichen):** Eine kurze SOUL.md ist bei `hermes3:8b` Pflicht. Längere Varianten (>~1000 Zeichen) triggern zuverlässig einen Template-Bug, der zu aggressivem Tool-Calling bei einfachen Konversationsfragen führt. Inhalt: Sprache (Deutsch/du), Tonalität mit konkreten Beispiel-Ankern, klare Verbote.

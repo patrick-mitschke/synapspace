@@ -22,7 +22,8 @@ Sensible Details (IP-Adressen, Subnetze, Benutzernamen, VPN-Endpunkte) sind in a
 | [PHASE_3_san.md](./PHASE_3_san.md) | Container-Stack, LLM-Modelle, DEX/OpenClaw | ✅ Abgeschlossen |
 | [PHASE_4_san.md](./PHASE_4_san.md) | GPU-Integration, Netdata Monitoring, Modelfiles | ✅ Abgeschlossen |
 | [PHASE_4_5_san.md](./PHASE_4_5_san.md) | Systemhärtung, Remote-Zugriff (DualStack/WireGuard), Coach-Architektur, Backup-Ausbau | ✅ Abgeschlossen |
-| PHASE_5_san.md | Hybrid-System mit Mistral: Coach „DEX" (Vibe), Lernprofil-DB, n8n als MCP-Server / MCP-Brücke | ⏳ Ausstehend |
+| [PHASE_5_san.md](./PHASE_5_san.md) | Hybrid-System mit Mistral: Coach „DEX" (Vibe), Lernprofil-DB, n8n als MCP-Server / MCP-Brücke | ✅ Abgeschlossen |
+| PHASE_5_5_san.md | Konsolidierung: Netzwerk/Hardware, Ollama-Engine-Update, DB-/Persona-Schärfung, erster Tutor | 🔄 In Arbeit |
 | PHASE_6_san.md | Lokales Wissens-Backend: RAG (Qdrant), Tutoren, Concept Map, Material-/Monitoring-Workflows | ⏳ Ausstehend |
 | [PROJECT_DECISIONS_san.md](./PROJECT_DECISIONS_san.md) | Alle technischen Entscheidungen mit Begründungen | 📋 Laufend |
 

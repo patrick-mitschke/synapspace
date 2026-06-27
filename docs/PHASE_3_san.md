@@ -91,6 +91,9 @@ Alle 7 Modelle wurden über Ollama gezogen – kleine Modelle zuerst zum Testen,
 **Status: ✅ COMPLETE**
 
 ### DEX – Dynamic Educational eXpander
+
+> ⚠️ **HISTORISCH (Coach-Engine-Umentscheidung, Phase 4.5):** Der hier beschriebene **lokale** OpenClaw-/Telegram-DEX (`hermes3:8b-dex`) ist überholt. Seit Phase 4.5 ist der Coach „DEX" = **Mistral Vibe (Cloud, EU/DSGVO)**; OpenClaw läuft nur noch auf Loopback (kostet nichts, Post-MVP-Kandidat). Der Abschnitt bleibt als Verlaufsdoku erhalten — Details → [PHASE_4_5_san.md](./PHASE_4_5_san.md).
+
 Agentisches AI-Gateway auf Basis von OpenClaw, konfiguriert als persönlicher Bildungs- und Karrierecoach. DEX ist der einzige Stack-Bestandteil, der proaktiv agiert – alle anderen Komponenten warten auf Trigger. Über Telegram ist DEX jederzeit erreichbar, auch mobil.
 
 ### Konfigurationen

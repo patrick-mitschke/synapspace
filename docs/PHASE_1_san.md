@@ -87,6 +87,7 @@
 - **VG:** vg-synapspace (444.078G, PV = Partition 3 der Intel SSD)
 - **lv-root:** 40G, ext4, /
 - **lv-docker:** 404G, ext4, /var/lib/docker
+  - ⚠️ **Spätere Korrektur:** lv-docker in Phase 4.5 auf **374G** verkleinert (~30G VG-Reserve für LVM-Snapshots) → [PHASE_4_5_san.md](./PHASE_4_5_san.md)
 
 ### Partitionen (Intel SSD)
 - P1: 1.049G fat32 → /boot/efi (ESP)
@@ -107,6 +108,7 @@
 - **Status:** aktiv
 - **Default:** deny incoming, allow outgoing
 - **Port 22/tcp:** ALLOW IN Anywhere
+  - ⚠️ **Spätere Korrektur:** Phase-1-Regelstand (Port 22 „Anywhere") in Phase 4.5 auf `<HOME_SUBNET>` gehärtet → [PHASE_4_5_san.md](./PHASE_4_5_san.md)
 - **Ports 5678, 3000, 9000, 11434, 6333, 8080:** ALLOW IN `<HOME_SUBNET>`
 
 ### SSH

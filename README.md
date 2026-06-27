@@ -1,7 +1,7 @@
 # SynapSpace – Lokales KI-Lernökosystem
 
 > **Dieses Repository befindet sich im aktiven Aufbau.**
-> Phasen 0–4.5 sind abgeschlossen und dokumentiert. Phase 5 (Hybrid-System mit Mistral) ist aktiv, Phase 6 folgt. Die README gibt den vollständigen Überblick – detaillierte Logs, Konfigurationen und die Entscheidungshistorie liegen in separaten Dateien unter [`docs/`](https://github.com/patrick-mitschke/synapspace/blob/main/docs).
+> Phasen 0–5 sind abgeschlossen und dokumentiert. Phase 5.5 (Konsolidierung) ist in Arbeit, Phase 6 folgt. Die README gibt den vollständigen Überblick – detaillierte Logs, Konfigurationen und die Entscheidungshistorie liegen in separaten Dateien unter [`docs/`](https://github.com/patrick-mitschke/synapspace/blob/main/docs).
 
 ---
 
@@ -45,11 +45,11 @@ Das Ziel: Ein Lernsystem, das meinen aktuellen Wissensstand kennt, Lücken erken
 | **Cloud-Coach**     | Mistral Vibe (Education-Pro, EU/DSGVO)                  | Strategischer Lerncoach „DEX" – einzige Cloud-KI im Ökosystem |
 | **Automatisierung** | n8n                                                     | Workflow-Routing, ETL, einziger Schreib-Gateway zur DB, **MCP-Server** für den Coach |
 | **Agentik (lokal)** | OpenClaw                                                | Loopback-Installation, Post-MVP-Kandidat (Sandbox-Szenario-Builder) |
-| **Reverse-Proxy**   | Nginx Proxy Manager                                     | TLS-Terminierung für die MCP-Brücke (Phase 6)           |
+| **Reverse-Proxy**   | Caddy (EU-VPS, 443) live; Nginx Proxy Manager (LAN/Reuse) | TLS-Terminierung der MCP-Brücke – Caddy am VPS (Phase 5) |
 | **UI**              | Open WebUI                                              | Direktes Testen der lokalen Modelle                     |
 | **Monitoring**      | Netdata                                                 | Echtzeit-Dashboard: CPU, RAM, Disk, GPU, Docker         |
 | **Backup**          | rsync + GVS-Strategie (Großvater-Vater-Sohn)            | Automatisiert, kalenderunabhängig                       |
-| **Remote-Zugriff**  | WireGuard via FritzBox 7530 (DualStack / öffentliche IPv4, MyFRITZ) | Sicherer Fernzugriff ohne offene Portfreigaben          |
+| **Remote-Zugriff**  | NetBird-Mesh (P2P/WireGuard) + EU-VPS-Vermittler (Caddy:443); FritzBox-WireGuard als Lifeline | Heim rein ausgehend – keine offenen Portfreigaben |
 | **Firewall**        | UFW                                                     | Default-Deny, Whitelisting auf Subnetz-Ebene            |
 
 **LLM-Portfolio (lokal, ~97,5 GB):**
@@ -106,22 +106,25 @@ DEX ist der strategische Lerncoach von SynapSpace. Er läuft als **Cloud-Dienst 
 │  │   OpenClaw (Loopback,│                                       │
 │  │     Post-MVP)        │                                       │
 │  └──────────┬───────────┘                                       │
-│             │                                                   │
-│             │            ┌────────────────────────┐             │
-│             └───────────►│  FritzBox 7530         │             │
-│                          │  WireGuard · DualStack │             │
-│                          └─────┬──────────┬───────┘             │
-└────────────────────────────────┼──────────┼────────────────────┘
-        MCP-Brücke (TLS, n8n)     │          │   VPN-Tunnel
-        ┌─────────────────────────▼──┐   ┌───▼──────────────────────┐
-        │  Mistral Vibe (Cloud,      │   │  Mobile Endgeräte         │
-        │  EU/DSGVO)                 │   │  Z Flip 7   (Interface)   │
-        │  Lerncoach „DEX"           │   │  OnePlus 6  (Admin)       │
-        │  liest Lernprofil per MCP  │   │  Tab S6 Lite (Lern-Tablet)│
-        └────────────────────────────┘   └───────────────────────────┘
+│             │  FritzBox 7530 – rein ausgehend, keine Freigaben  │
+└─────────────┼──────────────────────────────────────────────────┘
+              │ NetBird-Mesh (ausgehend, P2P/WireGuard)
+              ▼
+        ┌──────────────────────────────┐
+        │  EU-VPS (Hetzner, DE)        │
+        │  Caddy:443 – einziger        │
+        │  öffentlicher 443-Eingang    │
+        │  (nur /mcp, Bearer-Token)    │
+        └──────────────┬───────────────┘
+                       │ MCP-Brücke (HTTPS)
+        ┌──────────────▼───────────────┐
+        │  Mistral Vibe (Cloud,        │
+        │  EU/DSGVO) – Lerncoach „DEX" │
+        │  liest Lernprofil per MCP    │
+        └──────────────────────────────┘
 ```
 
-**Hybrid-Ansatz:** Urheberrechtlich geschützte Daten bleiben ausschließlich lokal. Als einzige Cloud-KI ergänzt **Mistral** das System – der Coach „DEX" (Vibe) und bei Bedarf Le Chat. Der Coach liest das lokale Lernprofil über die **MCP-Brücke** (n8n als MCP-Server, Vibe als MCP-Client, TLS-gesichert); lange Material-Generierung läuft **asynchron** und wird separat zurückgemeldet. Geschützte Inhalte werden nie in ein Cloud-Modell übertragen. **Claude** wird als Technical-Lead beim *Aufbau* genutzt, ist als US-gehostetes Tool aber bewusst **kein Bestandteil des laufenden Ökosystems** („Bauteam ≠ Ökosystem").
+**Hybrid-Ansatz:** Urheberrechtlich geschützte Daten bleiben ausschließlich lokal. Als einzige Cloud-KI ergänzt **Mistral** das System – der Coach „DEX" (Vibe) und bei Bedarf Le Chat. Der Coach liest das lokale Lernprofil über die **MCP-Brücke** (Mistral → EU-VPS/Caddy:443 → NetBird-Mesh → n8n als MCP-Server; Heim rein ausgehend, TLS-gesichert); lange Material-Generierung läuft **asynchron** und wird separat zurückgemeldet. Geschützte Inhalte werden nie in ein Cloud-Modell übertragen. **Claude** wird als Technical-Lead beim *Aufbau* genutzt, ist als US-gehostetes Tool aber bewusst **kein Bestandteil des laufenden Ökosystems** („Bauteam ≠ Ökosystem").
 
 ---
 
@@ -135,7 +138,8 @@ DEX ist der strategische Lerncoach von SynapSpace. Er läuft als **Cloud-Dienst 
 | **Phase 3**   | Container-Stack, LLM-Modelle, OpenClaw                                                  | ✅ Abgeschlossen | ~6h       |
 | **Phase 4**   | GPU-Integration, Netdata Monitoring, Modelfiles                                         | ✅ Abgeschlossen | ~10h      |
 | **Phase 4.5** | Systemhärtung, Remote-Zugriff (DualStack/WireGuard), Coach-Architektur, Backup-Ausbau   | ✅ Abgeschlossen | ~20h      |
-| **Phase 5**   | Hybrid-System mit Mistral: Coach „DEX" (Vibe), Lernprofil-DB, n8n als MCP-Server        | 🔄 In Arbeit    | ~12–15h   |
+| **Phase 5**   | Hybrid-System mit Mistral: Coach „DEX" (Vibe), Lernprofil-DB, n8n als MCP-Server        | ✅ Abgeschlossen    | ~12–15h   |
+| **Phase 5.5** | Konsolidierung: Netzwerk/Hardware, Ollama-Engine-Update, DB-/Persona-Schärfung, erster Tutor | 🔄 In Arbeit | ~10–14h   |
 | **Phase 6**   | Lokales Wissens-Backend: RAG (Qdrant), Tutoren, Concept Map, Material-/Monitoring-Workflows | ⏳ Ausstehend | ~10–12h   |
 
 Detaillierte Logs mit Befehlen, Konfigurationen, Troubleshooting und Lessons Learned: [`docs/`](https://github.com/patrick-mitschke/synapspace/blob/main/docs)
@@ -162,7 +166,7 @@ Alle Entscheidungen: [`docs/PROJECT_DECISIONS_san.md`](https://github.com/patric
 
 - SSH ausschließlich via Ed25519-Key (Passwort-Login deaktiviert)
 - UFW: Default-Deny, alle Service-Ports nur im Heimsubnetz erreichbar
-- Externer Zugriff ausschließlich über WireGuard – keine offenen Portfreigaben, kein Exposed Host (UPnP deaktiviert)
+- Externer Zugriff über NetBird-Mesh + EU-VPS-Vermittler (Caddy:443, nur `/mcp` mit Bearer); das Heim ist rein ausgehend – keine offenen Portfreigaben, kein Exposed Host (UPnP deaktiviert), FritzBox-WireGuard nur als Lifeline
 - OpenClaw-Gateway nur auf Loopback (`127.0.0.1`) gebunden – nicht extern oder über IPv6 erreichbar
 - Docker/UFW-iptables-Lücke explizit über die `DOCKER-USER`-Chain geschlossen
 - PostgreSQL ohne Host-Port – nur containerintern erreichbar
@@ -175,10 +179,14 @@ Alle Entscheidungen: [`docs/PROJECT_DECISIONS_san.md`](https://github.com/patric
 
 ## Was kommt als nächstes
 
-**Phase 5 – Hybrid-System mit Mistral (in Arbeit):**
+**Phase 5 – Hybrid-System mit Mistral (abgeschlossen):**
 
 - Coach „DEX" in Mistral Vibe mit Persona, Lernprofil-Datenbank (PostgreSQL) lokal angelegt
-- n8n als MCP-Server, MCP-Brücke zwischen Cloud-Coach und lokalem System (externe Härtung via Reverse-Proxy + TLS)
+- n8n als MCP-Server; MCP-Brücke Mistral → EU-VPS (Caddy:443) → NetBird-Mesh → Heim-n8n, beidseitig (Lesen + Schreiben) verifiziert; Heim rein ausgehend
+
+**Phase 5.5 – Konsolidierung (in Arbeit):**
+
+- Netzwerk-/Hardware-Konsolidierung, Ollama-Engine-Update, DB-/Persona-Schärfung, erster vollumfänglich eingebetteter Tutor
 
 **Phase 6 – Lokales Wissens-Backend:**
 
