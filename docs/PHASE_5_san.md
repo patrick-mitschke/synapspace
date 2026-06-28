@@ -1,5 +1,5 @@
 # PHASE_5 – Hybrid-System mit Mistral (Coach-Layer + MCP-Brücke)
-**Status: ✅ ABGESCHLOSSEN**
+**Status: ✅ COMPLETE**
 **Zeitraum:** ~Anfang–Mitte Juni 2026 (End-to-End-Verifikation 11.–17.06.2026) | **Aufwand:** ~12–15 h
 
 > **Ziel:** Den Cloud-Coach **DEX** (Mistral) über eine abgesicherte **MCP-Brücke** mit der lokalen **Lernprofil-DB** verbinden — DEX liest den Lernstand und schreibt Logbuch-Einträge, **ohne** dass das Heimnetz einen offenen Eingang braucht.
@@ -27,7 +27,7 @@ DEX ist die **Coaching-Ebene** des Hybrid-Setups — kein Tutor, kein IT-Lehrer:
 
 Damit **jeder** Chat automatisch DEX ist, ohne Prompt-Einfügen, liegt die Persona als **Projekt-Custom-Instructions** im Vibe-Projekt „DEX". Zur Abnahme habe ich DEX sich selbst vorstellen lassen — die Antwort zeigt die Persona sauber ausgeprägt (Lerncoach, sachlich-direkt, trockener Humor, datengetrieben, „kein IT-Lehrer", verortet sich korrekt als Coaching-Ebene zwischen Tutoren und lokalem System).
 
-![DEX stellt sich im Mistral-Vibe-Chat vor: Lerncoach-Persona (kein Tutor), sachlich-direkt, verortet sich als Coaching-Ebene zwischen Tutoren und lokalem System](../assets/phase-5/phase5_dex_vorstellung.png)
+![DEX stellt sich im Mistral-Vibe-Chat vor: Lerncoach-Persona (kein Tutor), sachlich-direkt, verortet sich als Coaching-Ebene zwischen Tutoren und lokalem System. Kontoname unten links geschwärzt.](../assets/phase-5/phase5_dex_vorstellung.png)
 
 ### Konfigurationen
 - Projekt **„DEX"** in **Vibe Work**; Persona als **Projekt-Custom-Instructions** (Datei `DEX_Persona_CustomInstructions.md`) → jeder Chat ist automatisch DEX.
@@ -161,7 +161,7 @@ Die Lösung der 443-Wand: ein kleiner **EU-VPS** (Hetzner, Deutschland) ist der 
 
 Caddys Auth-Gate ist der sicherheitskritische Teil: `/mcp` ohne Token → **401** (mit `WWW-Authenticate: Bearer`, das Mistrals Auto-Detect braucht), die Root `/` → **403**, und mit gültigem Token → **reverse_proxy** an n8n mit offenem SSE-Stream. Der curl-Test am VPS zeigt genau diese drei Fälle.
 
-![curl-Test am VPS gegen Caddy: 401 ohne Token (mit `WWW-Authenticate: Bearer`), 403 auf Root, 200 + `text/event-stream` mit gültigem Token. Domain, MCP-Pfad-ID und Session-ID geschwärzt](../assets/phase-5/phase5_mcp_endpoint_tls_auth.png)
+![curl-Test am VPS gegen Caddy: 401 ohne Token (mit `WWW-Authenticate: Bearer`), 403 auf Root, 200 + `text/event-stream` mit gültigem Token. Domain, MCP-Pfad-ID, Bearer-Token und Session-ID geschwärzt; der öffentliche Hostname `synapspace-vps` bleibt sichtbar.](../assets/phase-5/phase5_mcp_endpoint_tls_auth.png)
 
 ### Konfigurationen
 **VPS-Härtung** — Hetzner **CX23** (x86, 2 vCPU/4 GB/40 GB), DE, Ubuntu 24.04, Hostname `synapspace-vps`, IPv4 `<VPS_IP>`, NetBird-IP `<MESH_IP_VPS>`:
@@ -238,4 +238,4 @@ Der objektive Beleg ist nicht DEX' Erzählung, sondern die **n8n-Execution-Liste
 
 ## Abgrenzung
 - **Hybrid-Integration = Mistral** (diese Phase). Alte Idee „Cloud-Workflows über Gemini/NotebookLM/Perplexity" mit der Tool-Souveränität gestrichen.
-- **In Phase 6 verschoben:** lokales RAG (Qdrant) + Material-/Monitoring-Workflows, echte Tutoren, Concept Map (`thema_beziehung`-Tabelle, Netz statt nur Baum), Glossar, Sandboxes, Nutzungspaket; Wissensart-Taxonomie (PACER) final + `methode_wissensart`-Matrix, **ROI-Werte je Thema**, **Themenkatalog-Import** in `themen`.
+- **In Phase 6 verschoben:** lokales RAG (Qdrant) + Material-/Monitoring-Workflows, echte Tutoren, Concept Map (`thema_beziehung`-Tabelle, Netz statt nur Baum), Glossar, Sandboxes, Nutzungspaket; Wissensart-Taxonomie (
